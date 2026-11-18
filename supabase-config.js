@@ -1,0 +1,1 @@
+﻿window.SUPABASE_CONFIG = {"publishableKey":"sb_publishable_qsrjOFQT-tQeCycVvHrZNQ_8lSSeO_B","url":"https://ijwugsuizzkroemnepfp.supabase.co"};

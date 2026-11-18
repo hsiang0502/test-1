@@ -13,6 +13,8 @@ app.js           借還管理程式
 assets/          36 張教具照片與 catalog.pdf 原始清冊
 .nojekyll        靜態網站標記
 README.md        本說明
+supabase/        Supabase SQL migration
+supabase-config.js 專案 URL 與 publishable key
 ```
 
 ## 上傳 GitHub
@@ -36,9 +38,12 @@ README.md        本說明
 
 ## 資料保存與適用範圍
 
-- 本版以瀏覽器 localStorage 保存資料，沒有後端資料庫、多人同步、帳號權限或收費功能。
-- 不同電腦、瀏覽器或網站網址的紀錄不會自動共用。換網址前，請先匯出備份，再到新網址匯入。
-- 清除網站資料可能刪除紀錄，請定期匯出備份。
+- 借還資料同步至 Supabase，資料表為 public.teaching_app_state。
+- 專案管理員須先在 Supabase SQL Editor 執行 `supabase/migrations/202611180001_teaching_app_state.sql`。
+- Supabase Authentication → URL Configuration 的 Site URL 設為 `https://hsiang0502.github.io/test-1/`，並將相同網址加入 Redirect URLs。
+- 啟用 Email OTP。使用者需以 `@tpech.gov.tw` 信箱登入；資料表 RLS 也會檢查登入者網域。
+- localStorage 只作為登入裝置的備份與初次資料初始化來源；雲端 revision 鎖定可避免不同使用者更新時互相覆蓋。
+- 清除網站資料前仍建議匯出備份。
 - 初始數量來自提供的清冊；請先確認現場實際數量與存放位置。
 - 借用與歸還表單由 app.js 產生；單獨上傳 index.html 不會有完整功能。
 - 網站為純 HTML/CSS/JavaScript，不需要 npm 安裝或編譯。正式使用建議透過網站網址開啟。
